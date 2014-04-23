@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	_ "./sql"
+	_ "github.com/emptyland/akino/sql"
 )
 
 func main() {

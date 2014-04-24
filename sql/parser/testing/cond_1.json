@@ -1,0 +1,38 @@
+{
+	"OpPos": 0,
+	"Case": {
+		"NamePos": 5,
+		"Name": "id"
+	},
+	"Blocks": [
+		{
+			"When": {
+				"ValuePos": 13,
+				"Value": "1",
+				"Kind": 68
+			},
+			"Then": {
+				"ValuePos": 20,
+				"Value": "\"first\"",
+				"Kind": 70
+			}
+		},
+		{
+			"When": {
+				"ValuePos": 33,
+				"Value": "2",
+				"Kind": 68
+			},
+			"Then": {
+				"ValuePos": 40,
+				"Value": "\"second\"",
+				"Kind": 70
+			}
+		}
+	],
+	"Else": {
+		"ValuePos": 54,
+		"Value": "NULL",
+		"Kind": 71
+	}
+}

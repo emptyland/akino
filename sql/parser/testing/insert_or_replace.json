@@ -1,0 +1,18 @@
+{
+	"InsertPos": 0,
+	"InsertEnd": 37,
+	"Op": 63,
+	"Dest": {
+		"First": "db",
+		"Second": "t"
+	},
+	"Column": [],
+	"Item": [
+		{
+			"ValuePos": 35,
+			"Value": "1",
+			"Kind": 68
+		}
+	],
+	"From": null
+}

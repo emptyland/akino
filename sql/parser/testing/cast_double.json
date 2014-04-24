@@ -1,0 +1,23 @@
+{
+	"OpPos": 0,
+	"Operand": {
+		"ValuePos": 6,
+		"Value": "1",
+		"Kind": 68
+	},
+	"To": {
+		"TokenPos": 11,
+		"Kind": 111,
+		"Width": {
+			"ValuePos": 18,
+			"Value": "6",
+			"Kind": 68
+		},
+		"Decimal": {
+			"ValuePos": 21,
+			"Value": "2",
+			"Kind": 68
+		},
+		"Unsigned": false
+	}
+}

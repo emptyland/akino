@@ -1,0 +1,67 @@
+{
+	"SelectPos": 0,
+	"SelectEnd": 24,
+	"Op": 0,
+	"Prior": null,
+	"Distinct": false,
+	"Limit": null,
+	"Offset": null,
+	"SelColList": [
+		{
+			"SelectExpr": {
+				"ValuePos": 7,
+				"Value": "*",
+				"Kind": 83
+			},
+			"Alias": ""
+		}
+	],
+	"From": [
+		{
+			"SourcePos": 14,
+			"SourceEnd": 16,
+			"JoinType": 1,
+			"Table": {
+				"First": "t1",
+				"Second": ""
+			},
+			"Subquery": null,
+			"Alias": "",
+			"Indexed": "",
+			"On": null,
+			"Using": null
+		},
+		{
+			"SourcePos": 18,
+			"SourceEnd": 20,
+			"JoinType": 1,
+			"Table": {
+				"First": "t2",
+				"Second": ""
+			},
+			"Subquery": null,
+			"Alias": "",
+			"Indexed": "",
+			"On": null,
+			"Using": null
+		},
+		{
+			"SourcePos": 22,
+			"SourceEnd": 24,
+			"JoinType": 0,
+			"Table": {
+				"First": "t3",
+				"Second": ""
+			},
+			"Subquery": null,
+			"Alias": "",
+			"Indexed": "",
+			"On": null,
+			"Using": null
+		}
+	],
+	"Where": null,
+	"Having": null,
+	"GroupBy": null,
+	"OrderBy": null
+}

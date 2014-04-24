@@ -1,0 +1,106 @@
+{
+	"SelectPos": 0,
+	"SelectEnd": 53,
+	"Op": 0,
+	"Prior": null,
+	"Distinct": false,
+	"Limit": null,
+	"Offset": null,
+	"SelColList": [
+		{
+			"SelectExpr": {
+				"ValuePos": 7,
+				"Value": "*",
+				"Kind": 83
+			},
+			"Alias": ""
+		}
+	],
+	"From": [
+		{
+			"SourcePos": 14,
+			"SourceEnd": 16,
+			"JoinType": 0,
+			"Table": {
+				"First": "t",
+				"Second": ""
+			},
+			"Subquery": null,
+			"Alias": "",
+			"Indexed": "",
+			"On": null,
+			"Using": null
+		}
+	],
+	"Where": null,
+	"Having": null,
+	"GroupBy": [
+		{
+			"OpPos": 26,
+			"Op": 87,
+			"Lhs": {
+				"NamePos": 25,
+				"Name": "t"
+			},
+			"Rhs": {
+				"NamePos": 27,
+				"Name": "a"
+			}
+		},
+		{
+			"OpPos": 31,
+			"Op": 87,
+			"Lhs": {
+				"NamePos": 30,
+				"Name": "t"
+			},
+			"Rhs": {
+				"NamePos": 32,
+				"Name": "b"
+			}
+		},
+		{
+			"OpPos": 37,
+			"Op": 84,
+			"Lhs": {
+				"ValuePos": 35,
+				"Value": "1",
+				"Kind": 68
+			},
+			"Rhs": {
+				"OpPos": 40,
+				"Op": 87,
+				"Lhs": {
+					"NamePos": 39,
+					"Name": "t"
+				},
+				"Rhs": {
+					"NamePos": 41,
+					"Name": "c"
+				}
+			}
+		},
+		{
+			"Func": {
+				"NamePos": 44,
+				"Name": "func"
+			},
+			"Args": [
+				{
+					"OpPos": 50,
+					"Op": 87,
+					"Lhs": {
+						"NamePos": 49,
+						"Name": "t"
+					},
+					"Rhs": {
+						"NamePos": 51,
+						"Name": "d"
+					}
+				}
+			],
+			"Distinct": false
+		}
+	],
+	"OrderBy": null
+}

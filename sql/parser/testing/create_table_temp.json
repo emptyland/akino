@@ -1,0 +1,34 @@
+{
+	"CreatePos": 12,
+	"CreateEnd": 36,
+	"Temp": true,
+	"IfNotExists": false,
+	"Table": {
+		"First": "db",
+		"Second": "t"
+	},
+	"Scheme": [
+		{
+			"Name": "id",
+			"ColumnType": {
+				"TokenPos": 27,
+				"Kind": 105,
+				"Width": null,
+				"Decimal": null,
+				"Unsigned": false
+			},
+			"Default": null,
+			"NotNull": false,
+			"NotNullOn": 62,
+			"PrimaryKey": false,
+			"PrimaryKeyOn": 62,
+			"PrimaryKeyDesc": false,
+			"Unique": false,
+			"UniqueOn": 62,
+			"AutoIncr": false,
+			"Collate": ""
+		}
+	],
+	"Template": null,
+	"CheckConstraint": null
+}

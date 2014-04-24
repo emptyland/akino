@@ -1,0 +1,23 @@
+{
+	"CreatePos": 7,
+	"CreateEnd": 44,
+	"Unique": false,
+	"IfNotExists": false,
+	"Name": {
+		"First": "db",
+		"Second": "idx"
+	},
+	"Table": "t",
+	"Index": [
+		{
+			"Name": "id",
+			"Collate": "",
+			"Desc": true
+		},
+		{
+			"Name": "name",
+			"Collate": "",
+			"Desc": false
+		}
+	]
+}

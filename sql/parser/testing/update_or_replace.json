@@ -1,0 +1,32 @@
+{
+	"UpdatePos": 0,
+	"UpdateEnd": 48,
+	"Op": 63,
+	"Dest": {
+		"First": "db",
+		"Second": "t"
+	},
+	"Indexed": "",
+	"Set": [
+		{
+			"Column": "id",
+			"Value": {
+				"ValuePos": 32,
+				"Value": "1",
+				"Kind": 68
+			}
+		},
+		{
+			"Column": "name",
+			"Value": {
+				"ValuePos": 42,
+				"Value": "'john'",
+				"Kind": 70
+			}
+		}
+	],
+	"Where": null,
+	"OrderBy": null,
+	"Limit": null,
+	"Offset": null
+}

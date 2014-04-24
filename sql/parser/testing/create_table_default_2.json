@@ -1,0 +1,41 @@
+{
+	"CreatePos": 7,
+	"CreateEnd": 49,
+	"Temp": false,
+	"IfNotExists": false,
+	"Table": {
+		"First": "db",
+		"Second": "t"
+	},
+	"Scheme": [
+		{
+			"Name": "name",
+			"ColumnType": {
+				"TokenPos": 24,
+				"Kind": 119,
+				"Width": {
+					"ValuePos": 32,
+					"Value": "16",
+					"Kind": 68
+				},
+				"Decimal": null,
+				"Unsigned": false
+			},
+			"Default": {
+				"NamePos": 44,
+				"Name": "john"
+			},
+			"NotNull": false,
+			"NotNullOn": 62,
+			"PrimaryKey": false,
+			"PrimaryKeyOn": 62,
+			"PrimaryKeyDesc": false,
+			"Unique": false,
+			"UniqueOn": 62,
+			"AutoIncr": false,
+			"Collate": ""
+		}
+	],
+	"Template": null,
+	"CheckConstraint": null
+}

@@ -1,0 +1,46 @@
+{
+	"OpPos": 4,
+	"Op": 72,
+	"Lhs": {
+		"NamePos": 0,
+		"Name": "num"
+	},
+	"Rhs": [
+		{
+			"Func": {
+				"NamePos": 8,
+				"Name": "COUNT"
+			},
+			"Args": [
+				{
+					"ValuePos": 14,
+					"Value": "*",
+					"Kind": 83
+				}
+			],
+			"Distinct": false
+		},
+		{
+			"OpPos": 20,
+			"Op": 84,
+			"Lhs": {
+				"ValuePos": 18,
+				"Value": "4",
+				"Kind": 68
+			},
+			"Rhs": {
+				"OpPos": 25,
+				"Op": 83,
+				"Lhs": {
+					"NamePos": 22,
+					"Name": "id"
+				},
+				"Rhs": {
+					"ValuePos": 27,
+					"Value": "2",
+					"Kind": 68
+				}
+			}
+		}
+	]
+}

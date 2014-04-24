@@ -1,0 +1,53 @@
+{
+	"SelectPos": 0,
+	"SelectEnd": 32,
+	"Op": 0,
+	"Prior": null,
+	"Distinct": false,
+	"Limit": null,
+	"Offset": null,
+	"SelColList": [
+		{
+			"SelectExpr": {
+				"ValuePos": 7,
+				"Value": "*",
+				"Kind": 83
+			},
+			"Alias": ""
+		}
+	],
+	"From": [
+		{
+			"SourcePos": 14,
+			"SourceEnd": 22,
+			"JoinType": 1,
+			"Table": {
+				"First": "db",
+				"Second": "t"
+			},
+			"Subquery": null,
+			"Alias": "ldt",
+			"Indexed": "",
+			"On": null,
+			"Using": null
+		},
+		{
+			"SourcePos": 24,
+			"SourceEnd": 32,
+			"JoinType": 0,
+			"Table": {
+				"First": "db",
+				"Second": "t"
+			},
+			"Subquery": null,
+			"Alias": "rdt",
+			"Indexed": "",
+			"On": null,
+			"Using": null
+		}
+	],
+	"Where": null,
+	"Having": null,
+	"GroupBy": null,
+	"OrderBy": null
+}

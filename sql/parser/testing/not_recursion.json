@@ -1,0 +1,16 @@
+{
+	"OpPos": 0,
+	"Op": 93,
+	"Operand": {
+		"OpPos": 4,
+		"Op": 93,
+		"Operand": {
+			"OpPos": 8,
+			"Op": 93,
+			"Operand": {
+				"NamePos": 12,
+				"Name": "amt"
+			}
+		}
+	}
+}

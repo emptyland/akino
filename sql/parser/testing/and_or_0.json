@@ -1,0 +1,23 @@
+{
+	"OpPos": 8,
+	"Op": 92,
+	"Lhs": {
+		"OpPos": 2,
+		"Op": 91,
+		"Lhs": {
+			"ValuePos": 0,
+			"Value": "1",
+			"Kind": 68
+		},
+		"Rhs": {
+			"ValuePos": 6,
+			"Value": "0",
+			"Kind": 68
+		}
+	},
+	"Rhs": {
+		"ValuePos": 11,
+		"Value": "1",
+		"Kind": 68
+	}
+}

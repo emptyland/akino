@@ -1,0 +1,43 @@
+{
+	"OpPos": 0,
+	"Case": null,
+	"Blocks": [
+		{
+			"When": {
+				"ValuePos": 10,
+				"Value": "1",
+				"Kind": 68
+			},
+			"Then": {
+				"OpPos": 17,
+				"Op": 85,
+				"Operand": {
+					"ValuePos": 18,
+					"Value": "1",
+					"Kind": 68
+				}
+			}
+		},
+		{
+			"When": {
+				"ValuePos": 25,
+				"Value": "2",
+				"Kind": 68
+			},
+			"Then": {
+				"OpPos": 32,
+				"Op": 85,
+				"Operand": {
+					"ValuePos": 33,
+					"Value": "2",
+					"Kind": 68
+				}
+			}
+		}
+	],
+	"Else": {
+		"ValuePos": 40,
+		"Value": "NULL",
+		"Kind": 71
+	}
+}

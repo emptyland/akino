@@ -1,0 +1,19 @@
+{
+	"OpPos": 0,
+	"Operand": {
+		"ValuePos": 6,
+		"Value": "\"hello\"",
+		"Kind": 70
+	},
+	"To": {
+		"TokenPos": 17,
+		"Kind": 119,
+		"Width": {
+			"ValuePos": 25,
+			"Value": "8",
+			"Kind": 68
+		},
+		"Decimal": null,
+		"Unsigned": false
+	}
+}

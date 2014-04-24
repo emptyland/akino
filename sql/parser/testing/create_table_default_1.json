@@ -1,0 +1,47 @@
+{
+	"CreatePos": 7,
+	"CreateEnd": 45,
+	"Temp": false,
+	"IfNotExists": false,
+	"Table": {
+		"First": "db",
+		"Second": "t"
+	},
+	"Scheme": [
+		{
+			"Name": "id",
+			"ColumnType": {
+				"TokenPos": 22,
+				"Kind": 107,
+				"Width": null,
+				"Decimal": null,
+				"Unsigned": false
+			},
+			"Default": {
+				"Func": {
+					"NamePos": 35,
+					"Name": "sin"
+				},
+				"Args": [
+					{
+						"ValuePos": 39,
+						"Value": "100",
+						"Kind": 68
+					}
+				],
+				"Distinct": false
+			},
+			"NotNull": false,
+			"NotNullOn": 62,
+			"PrimaryKey": false,
+			"PrimaryKeyOn": 62,
+			"PrimaryKeyDesc": false,
+			"Unique": false,
+			"UniqueOn": 62,
+			"AutoIncr": false,
+			"Collate": ""
+		}
+	],
+	"Template": null,
+	"CheckConstraint": null
+}

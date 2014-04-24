@@ -1,0 +1,19 @@
+{
+	"Func": {
+		"NamePos": 0,
+		"Name": "POW"
+	},
+	"Args": [
+		{
+			"ValuePos": 4,
+			"Value": "1",
+			"Kind": 68
+		},
+		{
+			"ValuePos": 7,
+			"Value": "2",
+			"Kind": 68
+		}
+	],
+	"Distinct": false
+}

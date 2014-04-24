@@ -1,0 +1,13 @@
+{
+	"Func": {
+		"NamePos": 0,
+		"Name": "SUM"
+	},
+	"Args": [
+		{
+			"NamePos": 13,
+			"Name": "amt"
+		}
+	],
+	"Distinct": true
+}

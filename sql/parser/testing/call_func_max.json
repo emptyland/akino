@@ -1,0 +1,13 @@
+{
+	"Func": {
+		"NamePos": 0,
+		"Name": "MAX"
+	},
+	"Args": [
+		{
+			"NamePos": 4,
+			"Name": "amt"
+		}
+	],
+	"Distinct": false
+}

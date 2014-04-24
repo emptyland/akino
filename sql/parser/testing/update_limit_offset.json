@@ -1,0 +1,44 @@
+{
+	"UpdatePos": 0,
+	"UpdateEnd": 59,
+	"Op": 62,
+	"Dest": {
+		"First": "db",
+		"Second": "t"
+	},
+	"Indexed": "",
+	"Set": [
+		{
+			"Column": "name",
+			"Value": {
+				"ValuePos": 23,
+				"Value": "'john'",
+				"Kind": 70
+			}
+		}
+	],
+	"Where": {
+		"OpPos": 39,
+		"Op": 76,
+		"Lhs": {
+			"NamePos": 36,
+			"Name": "id"
+		},
+		"Rhs": {
+			"ValuePos": 41,
+			"Value": "1",
+			"Kind": 68
+		}
+	},
+	"OrderBy": null,
+	"Limit": {
+		"ValuePos": 49,
+		"Value": "2",
+		"Kind": 68
+	},
+	"Offset": {
+		"ValuePos": 58,
+		"Value": "1",
+		"Kind": 68
+	}
+}

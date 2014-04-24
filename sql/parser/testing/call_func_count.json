@@ -1,0 +1,14 @@
+{
+	"Func": {
+		"NamePos": 0,
+		"Name": "COUNT"
+	},
+	"Args": [
+		{
+			"ValuePos": 6,
+			"Value": "*",
+			"Kind": 83
+		}
+	],
+	"Distinct": false
+}

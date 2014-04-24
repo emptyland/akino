@@ -1,0 +1,21 @@
+{
+	"OpPos": 8,
+	"Op": 98,
+	"Lhs": {
+		"OpPos": 2,
+		"Op": 87,
+		"Lhs": {
+			"NamePos": 0,
+			"Name": "db"
+		},
+		"Rhs": {
+			"NamePos": 3,
+			"Name": "name"
+		}
+	},
+	"Rhs": {
+		"ValuePos": 13,
+		"Value": "\"name%\"",
+		"Kind": 70
+	}
+}

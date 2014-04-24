@@ -1,0 +1,27 @@
+{
+	"SelectPos": 0,
+	"SelectEnd": 15,
+	"Op": 0,
+	"Prior": null,
+	"Distinct": false,
+	"Limit": null,
+	"Offset": null,
+	"SelColList": [
+		{
+			"SelectExpr": {
+				"Func": {
+					"NamePos": 7,
+					"Name": "`DATE`"
+				},
+				"Args": [],
+				"Distinct": false
+			},
+			"Alias": ""
+		}
+	],
+	"From": null,
+	"Where": null,
+	"Having": null,
+	"GroupBy": null,
+	"OrderBy": null
+}

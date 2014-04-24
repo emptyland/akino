@@ -1,0 +1,29 @@
+{
+	"OpPos": 2,
+	"Op": 80,
+	"Lhs": {
+		"ValuePos": 0,
+		"Value": "1",
+		"Kind": 68
+	},
+	"Rhs": {
+		"OpPos": 7,
+		"Op": 72,
+		"Lhs": {
+			"NamePos": 4,
+			"Name": "id"
+		},
+		"Rhs": [
+			{
+				"ValuePos": 11,
+				"Value": "1",
+				"Kind": 68
+			},
+			{
+				"ValuePos": 14,
+				"Value": "2",
+				"Kind": 68
+			}
+		]
+	}
+}

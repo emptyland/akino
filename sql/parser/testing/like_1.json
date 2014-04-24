@@ -1,0 +1,13 @@
+{
+	"OpPos": 5,
+	"Op": 98,
+	"Lhs": {
+		"NamePos": 0,
+		"Name": "name"
+	},
+	"Rhs": {
+		"ValuePos": 10,
+		"Value": "\"name%\"",
+		"Kind": 70
+	}
+}

@@ -1,0 +1,51 @@
+{
+	"CreatePos": 7,
+	"CreateEnd": 33,
+	"Temp": false,
+	"IfNotExists": false,
+	"Table": {
+		"First": "t",
+		"Second": ""
+	},
+	"Scheme": null,
+	"Template": {
+		"SelectPos": 18,
+		"SelectEnd": 33,
+		"Op": 0,
+		"Prior": null,
+		"Distinct": false,
+		"Limit": null,
+		"Offset": null,
+		"SelColList": [
+			{
+				"SelectExpr": {
+					"ValuePos": 25,
+					"Value": "*",
+					"Kind": 83
+				},
+				"Alias": ""
+			}
+		],
+		"From": [
+			{
+				"SourcePos": 32,
+				"SourceEnd": 33,
+				"JoinType": 0,
+				"Table": {
+					"First": "u",
+					"Second": ""
+				},
+				"Subquery": null,
+				"Alias": "",
+				"Indexed": "",
+				"On": null,
+				"Using": null
+			}
+		],
+		"Where": null,
+		"Having": null,
+		"GroupBy": null,
+		"OrderBy": null
+	},
+	"CheckConstraint": null
+}

@@ -1,0 +1,12 @@
+{
+	"OpPos": 10,
+	"Op": 87,
+	"Lhs": {
+		"NamePos": 0,
+		"Name": "`DATABASE`"
+	},
+	"Rhs": {
+		"NamePos": 11,
+		"Name": "`INDEX`"
+	}
+}

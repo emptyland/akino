@@ -1,0 +1,37 @@
+{
+	"DeletePos": 0,
+	"DeleteEnd": 61,
+	"Dest": {
+		"First": "db",
+		"Second": "t"
+	},
+	"Indexed": "a",
+	"Where": {
+		"OpPos": 39,
+		"Op": 76,
+		"Lhs": {
+			"NamePos": 36,
+			"Name": "id"
+		},
+		"Rhs": {
+			"ValuePos": 41,
+			"Value": "1",
+			"Kind": 68
+		}
+	},
+	"OrderBy": [
+		{
+			"Item": {
+				"NamePos": 52,
+				"Name": "b"
+			},
+			"Desc": false
+		}
+	],
+	"Limit": {
+		"ValuePos": 60,
+		"Value": "1",
+		"Kind": 68
+	},
+	"Offset": null
+}

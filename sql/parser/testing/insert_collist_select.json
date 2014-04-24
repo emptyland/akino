@@ -1,0 +1,59 @@
+{
+	"InsertPos": 0,
+	"InsertEnd": 46,
+	"Op": 62,
+	"Dest": {
+		"First": "db",
+		"Second": "t"
+	},
+	"Column": [
+		{
+			"NamePos": 18,
+			"Name": "id"
+		},
+		{
+			"NamePos": 22,
+			"Name": "name"
+		}
+	],
+	"Item": [],
+	"From": {
+		"SelectPos": 28,
+		"SelectEnd": 46,
+		"Op": 0,
+		"Prior": null,
+		"Distinct": false,
+		"Limit": null,
+		"Offset": null,
+		"SelColList": [
+			{
+				"SelectExpr": {
+					"ValuePos": 35,
+					"Value": "*",
+					"Kind": 83
+				},
+				"Alias": ""
+			}
+		],
+		"From": [
+			{
+				"SourcePos": 42,
+				"SourceEnd": 46,
+				"JoinType": 0,
+				"Table": {
+					"First": "db",
+					"Second": "u"
+				},
+				"Subquery": null,
+				"Alias": "",
+				"Indexed": "",
+				"On": null,
+				"Using": null
+			}
+		],
+		"Where": null,
+		"Having": null,
+		"GroupBy": null,
+		"OrderBy": null
+	}
+}

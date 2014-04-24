@@ -1,0 +1,17 @@
+{
+	"OpPos": 16,
+	"Op": 84,
+	"Lhs": {
+		"OpPos": 4,
+		"Op": 75,
+		"Operand": {
+			"NamePos": 0,
+			"Name": "amt"
+		}
+	},
+	"Rhs": {
+		"ValuePos": 18,
+		"Value": "1",
+		"Kind": 68
+	}
+}

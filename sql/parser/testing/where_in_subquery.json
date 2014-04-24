@@ -1,0 +1,46 @@
+{
+	"OpPos": 2,
+	"Op": 72,
+	"Lhs": {
+		"NamePos": 0,
+		"Name": "a"
+	},
+	"Rhs": {
+		"SelectPos": 6,
+		"SelectEnd": 21,
+		"Op": 0,
+		"Prior": null,
+		"Distinct": false,
+		"Limit": null,
+		"Offset": null,
+		"SelColList": [
+			{
+				"SelectExpr": {
+					"NamePos": 13,
+					"Name": "a"
+				},
+				"Alias": ""
+			}
+		],
+		"From": [
+			{
+				"SourcePos": 20,
+				"SourceEnd": 21,
+				"JoinType": 0,
+				"Table": {
+					"First": "t",
+					"Second": ""
+				},
+				"Subquery": null,
+				"Alias": "",
+				"Indexed": "",
+				"On": null,
+				"Using": null
+			}
+		],
+		"Where": null,
+		"Having": null,
+		"GroupBy": null,
+		"OrderBy": null
+	}
+}

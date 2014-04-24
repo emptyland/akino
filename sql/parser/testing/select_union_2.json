@@ -1,0 +1,77 @@
+{
+	"SelectPos": 0,
+	"SelectEnd": 16,
+	"Op": 21,
+	"Prior": {
+		"SelectPos": 22,
+		"SelectEnd": 37,
+		"Op": 0,
+		"Prior": null,
+		"Distinct": false,
+		"Limit": null,
+		"Offset": null,
+		"SelColList": [
+			{
+				"SelectExpr": {
+					"ValuePos": 29,
+					"Value": "*",
+					"Kind": 83
+				},
+				"Alias": ""
+			}
+		],
+		"From": [
+			{
+				"SourcePos": 36,
+				"SourceEnd": 37,
+				"JoinType": 0,
+				"Table": {
+					"First": "u",
+					"Second": ""
+				},
+				"Subquery": null,
+				"Alias": "",
+				"Indexed": "",
+				"On": null,
+				"Using": null
+			}
+		],
+		"Where": null,
+		"Having": null,
+		"GroupBy": null,
+		"OrderBy": null
+	},
+	"Distinct": false,
+	"Limit": null,
+	"Offset": null,
+	"SelColList": [
+		{
+			"SelectExpr": {
+				"ValuePos": 7,
+				"Value": "*",
+				"Kind": 83
+			},
+			"Alias": ""
+		}
+	],
+	"From": [
+		{
+			"SourcePos": 14,
+			"SourceEnd": 16,
+			"JoinType": 0,
+			"Table": {
+				"First": "t",
+				"Second": ""
+			},
+			"Subquery": null,
+			"Alias": "",
+			"Indexed": "",
+			"On": null,
+			"Using": null
+		}
+	],
+	"Where": null,
+	"Having": null,
+	"GroupBy": null,
+	"OrderBy": null
+}

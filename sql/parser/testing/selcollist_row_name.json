@@ -1,0 +1,53 @@
+{
+	"SelectPos": 0,
+	"SelectEnd": 31,
+	"Op": 0,
+	"Prior": null,
+	"Distinct": false,
+	"Limit": null,
+	"Offset": null,
+	"SelColList": [
+		{
+			"SelectExpr": {
+				"NamePos": 7,
+				"Name": "id"
+			},
+			"Alias": ""
+		},
+		{
+			"SelectExpr": {
+				"OpPos": 12,
+				"Op": 87,
+				"Lhs": {
+					"NamePos": 11,
+					"Name": "t"
+				},
+				"Rhs": {
+					"NamePos": 13,
+					"Name": "id"
+				}
+			},
+			"Alias": ""
+		},
+		{
+			"SelectExpr": {
+				"OpPos": 18,
+				"Op": 87,
+				"Lhs": {
+					"NamePos": 17,
+					"Name": "t"
+				},
+				"Rhs": {
+					"NamePos": 19,
+					"Name": "name"
+				}
+			},
+			"Alias": "name"
+		}
+	],
+	"From": null,
+	"Where": null,
+	"Having": null,
+	"GroupBy": null,
+	"OrderBy": null
+}

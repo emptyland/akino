@@ -1,0 +1,95 @@
+{
+	"OpPos": 0,
+	"Case": {
+		"NamePos": 5,
+		"Name": "id"
+	},
+	"Blocks": [
+		{
+			"When": {
+				"ValuePos": 13,
+				"Value": "100",
+				"Kind": 68
+			},
+			"Then": {
+				"OpPos": 23,
+				"Case": {
+					"NamePos": 28,
+					"Name": "name"
+				},
+				"Blocks": [
+					{
+						"When": {
+							"ValuePos": 40,
+							"Value": "'Jack'",
+							"Kind": 70
+						},
+						"Then": {
+							"ValuePos": 52,
+							"Value": "1",
+							"Kind": 68
+						}
+					},
+					{
+						"When": {
+							"ValuePos": 61,
+							"Value": "'Tom'",
+							"Kind": 70
+						},
+						"Then": {
+							"ValuePos": 72,
+							"Value": "2",
+							"Kind": 68
+						}
+					}
+				],
+				"Else": {
+					"Func": {
+						"NamePos": 81,
+						"Name": "COUNT"
+					},
+					"Args": [
+						{
+							"NamePos": 96,
+							"Name": "name"
+						}
+					],
+					"Distinct": true
+				}
+			}
+		},
+		{
+			"When": {
+				"ValuePos": 107,
+				"Value": "200",
+				"Kind": 68
+			},
+			"Then": {
+				"OpPos": 116,
+				"Op": 85,
+				"Operand": {
+					"ValuePos": 117,
+					"Value": "200",
+					"Kind": 68
+				}
+			}
+		},
+		{
+			"When": {
+				"ValuePos": 126,
+				"Value": "300",
+				"Kind": 68
+			},
+			"Then": {
+				"OpPos": 135,
+				"Op": 85,
+				"Operand": {
+					"ValuePos": 136,
+					"Value": "300",
+					"Kind": 68
+				}
+			}
+		}
+	],
+	"Else": null
+}

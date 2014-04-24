@@ -1,0 +1,80 @@
+{
+	"SelectPos": 0,
+	"SelectEnd": 52,
+	"Op": 0,
+	"Prior": null,
+	"Distinct": false,
+	"Limit": null,
+	"Offset": null,
+	"SelColList": [
+		{
+			"SelectExpr": {
+				"ValuePos": 7,
+				"Value": "*",
+				"Kind": 83
+			},
+			"Alias": ""
+		}
+	],
+	"From": [
+		{
+			"SourcePos": 14,
+			"SourceEnd": 17,
+			"JoinType": 40,
+			"Table": {
+				"First": "t1",
+				"Second": ""
+			},
+			"Subquery": null,
+			"Alias": "",
+			"Indexed": "",
+			"On": null,
+			"Using": null
+		},
+		{
+			"SourcePos": 33,
+			"SourceEnd": 36,
+			"JoinType": 0,
+			"Table": {
+				"First": "t2",
+				"Second": ""
+			},
+			"Subquery": null,
+			"Alias": "",
+			"Indexed": "",
+			"On": {
+				"OpPos": 45,
+				"Op": 76,
+				"Lhs": {
+					"OpPos": 42,
+					"Op": 87,
+					"Lhs": {
+						"NamePos": 40,
+						"Name": "t1"
+					},
+					"Rhs": {
+						"NamePos": 43,
+						"Name": "a"
+					}
+				},
+				"Rhs": {
+					"OpPos": 49,
+					"Op": 87,
+					"Lhs": {
+						"NamePos": 47,
+						"Name": "t2"
+					},
+					"Rhs": {
+						"NamePos": 50,
+						"Name": "a"
+					}
+				}
+			},
+			"Using": null
+		}
+	],
+	"Where": null,
+	"Having": null,
+	"GroupBy": null,
+	"OrderBy": null
+}

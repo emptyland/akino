@@ -3,7 +3,8 @@ package ast
 import (
 	"encoding/json"
 	"testing"
-	"yui/sql/token"
+
+	"github.com/emptyland/akino/sql/token"
 )
 
 func TestLiteral(t *testing.T) {

@@ -1,12 +1,15 @@
-package test
+package gunit
 
 import (
 	"fmt"
+	"io"
 	"os"
 	. "reflect"
 	"runtime"
 	"strings"
 	"testing"
+
+	"github.com/wsxiaoys/terminal/color"
 )
 
 //
@@ -42,6 +45,7 @@ type Test struct {
 	tearDown *Method
 	numSucc  int
 	numFail  int
+	cache    linesCache
 }
 
 func RunTest(unit interface{}, t *testing.T) {
@@ -59,6 +63,7 @@ func RunTest(unit interface{}, t *testing.T) {
 		after:    method(unitType, afterName),
 		setUp:    method(unitType, setUpName),
 		tearDown: method(unitType, tearDownName),
+		cache:    newLinesCache(),
 	}
 	suite.Run()
 }
@@ -95,11 +100,12 @@ func (self *Test) runCase(caseFn Method) bool {
 		return true
 	}
 	caseOb := &Case{
-		t:         self.t,
+		T:         self.t,
 		suiteName: self.name,
 		name:      caseFn.Name,
 		what:      "",
 		pwd:       pwd,
+		cache:     self.cache,
 	}
 	args := []Value{
 		ValueOf(self.unit),
@@ -113,8 +119,13 @@ func (self *Test) runCase(caseFn Method) bool {
 
 		throw := recover()
 		this, ok := throw.(*Case)
-		if !ok || this != caseOb {
+		if throw != nil && (!ok || this != caseOb) {
+			fmt.Printf("rethrow %v\n", throw)
 			panic(throw)
+		}
+
+		if caseOb.numFail > 0 {
+			caseOb.T.Fail()
 		}
 	}()
 	if self.setUp != nil {
@@ -126,11 +137,15 @@ func (self *Test) runCase(caseFn Method) bool {
 }
 
 type Case struct {
-	t         *testing.T
-	suiteName string
-	name      string
-	what      string
-	pwd       string
+	T           *testing.T
+	suiteName   string
+	name        string
+	what        string
+	pwd         string
+	numFail     int
+	numSucc     int
+	breakOnFail bool
+	cache       linesCache
 }
 
 func (self *Case) Run(fn func(c *Case)) (fail bool) {
@@ -154,19 +169,57 @@ func (self *Case) What(format string, args ...interface{}) *Case {
 }
 
 func (self *Case) AssertEquals(lhs, rhs interface{}) {
-	self.assertEquals(2, lhs, rhs)
+	if !self.check(2, lhs, rhs, eq) {
+		panic(self)
+	}
 }
 
 func (self *Case) AssertTrue(rhs bool) {
-	self.assertEquals(2, true, rhs)
+	if !self.check(2, true, rhs, eq) {
+		panic(self)
+	}
 }
 
 func (self *Case) AssertFalse(rhs bool) {
-	self.assertEquals(2, false, rhs)
+	if !self.check(2, false, rhs, eq) {
+		panic(self)
+	}
 }
 
 func (self *Case) AssertNil(rhs interface{}) {
-	self.assertEquals(2, nil, rhs)
+	if !self.check(2, nil, rhs, eq) {
+		panic(self)
+	}
+}
+
+func (self *Case) AssertNotNil(rhs interface{}) {
+	if !self.check(2, nil, rhs, ne) {
+		panic(self)
+	}
+}
+
+func (self *Case) ExpectEquals(lhs, rhs interface{}) {
+	self.check(2, lhs, rhs, eq)
+}
+
+func (self *Case) ExpectTrue(rhs bool) {
+	self.check(2, true, rhs, eq)
+}
+
+func (self *Case) ExpectFalse(rhs bool) {
+	self.check(2, false, rhs, eq)
+}
+
+func (self *Case) ExpectNil(rhs interface{}) {
+	self.check(2, nil, rhs, eq)
+}
+
+func (self *Case) ExpectNotNil(rhs interface{}) {
+	self.check(2, nil, rhs, ne)
+}
+
+func (self *Case) String() string {
+	return fmt.Sprintf("gunit.Case[%s.%s]", self.suiteName, self.name)
 }
 
 const (
@@ -187,45 +240,65 @@ var opText = []string{
 	">=",
 }
 
-func (self *Case) assertEquals(depth int, lhs, rhs interface{}) {
+func (self *Case) check(depth int, lhs, rhs interface{}, op int) bool {
 	defer func() {
 		self.what = ""
 	}()
 
-	self.assert(depth+1, lhs, rhs, self.what, eq)
-}
-
-func (self *Case) assert(depth int, lhs, rhs interface{}, msg string, op int) {
 	switch op {
 	case eq:
 		if !DeepEqual(lhs, rhs) {
-			self.raiseFail(depth+1, lhs, rhs, msg, op)
+			self.reportFail(depth+1, lhs, rhs, self.what, op)
+			return false
 		}
 	case ne:
 		if DeepEqual(lhs, rhs) {
-			self.raiseFail(depth+1, lhs, rhs, msg, op)
+			self.reportFail(depth+1, lhs, rhs, self.what, op)
+			return false
 		}
 	}
+	self.numSucc++
+	return true
 }
 
-func (self *Case) raiseFail(depth int, lhs, rhs interface{}, msg string, op int) {
+func (self *Case) reportFail(depth int, lhs, rhs interface{}, msg string, op int) {
 	self.location(depth + 1)
-	fmt.Printf("    assert fail! (%s) %s\n", opText[op], msg)
-	fmt.Printf("... expected %s = %v\n", TypeOf(lhs).Name(), lhs)
-	fmt.Printf("...   actual %s = %v\n", TypeOf(rhs).Name(), rhs)
-	panic(self)
+	fmt.Printf("FAIL (%s) %s\n", opText[op], msg)
+
+	switch op {
+	case eq:
+		color.Printf("... expected @g%s = %v@|\n", mustTypeName(lhs), lhs)
+		color.Printf("...   actual @r%s = %v@|\n", mustTypeName(rhs), rhs)
+	case ne:
+		color.Printf("... expected @g%s = %v@|\n", mustTypeName(lhs), lhs)
+		color.Printf("...   but is @requals@|\n")
+	}
+	self.numFail++
+}
+
+func mustTypeName(ob interface{}) string {
+	if ob == nil {
+		return "nil"
+	} else {
+		return TypeOf(ob).Name()
+	}
 }
 
 func (self *Case) location(depth int) {
 	if _, file, line, ok := runtime.Caller(depth); ok {
+		lines, err := self.cache.Put(file)
+		if err != io.EOF {
+			panic(err)
+		}
+
 		file = self.fileName(file)
-		fmt.Printf("[%s.%s] %s:%d:\n", self.suiteName, self.name, file, line)
+		color.Printf("@y[%s.%s]@| %s:%d:\n%s\n", self.suiteName, self.name, file, line, lines[line-1])
 	}
 }
 
 func (self *Case) fileName(absPath string) string {
 	if strings.HasPrefix(absPath, self.pwd) {
-		return strings.TrimPrefix(absPath, self.pwd)
+		return strings.TrimPrefix(absPath, self.pwd+"/")
 	} else {
 		return absPath
 	}
@@ -233,7 +306,8 @@ func (self *Case) fileName(absPath string) string {
 
 func (self *Case) Fail() {
 	self.location(2)
-	fmt.Printf("    fail! %s\n", self.what)
+	fmt.Printf("FAIL %s\n", self.what)
 	self.what = ""
+	self.numFail++
 	panic(self)
 }

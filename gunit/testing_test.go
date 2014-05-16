@@ -67,3 +67,12 @@ func (self *SanityTest) TestMapRef(c *Case) {
 	c.ExpectEquals(-1, refMap["b"])
 	c.ExpectEquals(refMap["b"], originMap["b"])
 }
+
+func (self *SanityTest) TestSliceRef(c *Case) {
+	originSlice := make([]int, 3, 3)
+	refSlice := originSlice
+
+	originSlice[1] = -1
+	c.ExpectEquals(-1, originSlice[1])
+	c.ExpectEquals(-1, refSlice[1])
+}

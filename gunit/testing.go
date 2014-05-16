@@ -1,6 +1,7 @@
 package gunit
 
 import (
+	"flag"
 	"fmt"
 	"io"
 	"os"
@@ -48,11 +49,36 @@ type Test struct {
 	cache    linesCache
 }
 
+var testName = flag.String("gunit.test", "", "specify the name for test running.")
+
+var specSuiteName = ""
+var specCaseName = ""
+
+func init() {
+	flag.Parse()
+
+	if testName == nil || *testName == "" {
+		return
+	}
+
+	par := strings.Split(*testName, ".")
+	if len(par) <= 1 {
+		specSuiteName = *testName
+	} else {
+		specSuiteName = par[0]
+		specCaseName = par[1]
+	}
+}
+
 func RunTest(unit interface{}, t *testing.T) {
 	unitType := TypeOf(unit)
 	name := unitType.Name()
 	if unitType.Kind() == Ptr {
 		name = Indirect(ValueOf(unit)).Type().Name()
+	}
+
+	if specSuiteName != "" && specSuiteName != name {
+		return // Skip no specity suite
 	}
 	suite := &Test{
 		unit:     unit,
@@ -88,6 +114,10 @@ func (self *Test) Run() {
 
 	for i := 0; i < self.unitType.NumMethod(); i++ {
 		caseFn := self.unitType.Method(i)
+		if specCaseName != "" && specCaseName != caseFn.Name {
+			continue
+		}
+
 		if strings.HasPrefix(caseFn.Name, testPrefix) {
 			self.runCase(caseFn)
 		}
@@ -117,11 +147,10 @@ func (self *Test) runCase(caseFn Method) bool {
 			self.tearDown.Func.Call(args)
 		}
 
-		throw := recover()
-		this, ok := throw.(*Case)
-		if throw != nil && (!ok || this != caseOb) {
-			fmt.Printf("rethrow %v\n", throw)
-			panic(throw)
+		origin := recover()
+		this, ok := origin.(*Case)
+		if origin != nil && (!ok || this != caseOb) {
+			panic(origin)
 		}
 
 		if caseOb.numFail > 0 {
@@ -150,13 +179,13 @@ type Case struct {
 
 func (self *Case) Run(fn func(c *Case)) (fail bool) {
 	defer func() {
-		throw := recover()
-		if throw != nil {
+		origin := recover()
+		if origin != nil {
 			fail = true
 		}
-		this, ok := throw.(*Case)
+		this, ok := origin.(*Case)
 		if !ok || this != self {
-			panic(throw)
+			panic(origin)
 		}
 	}()
 	fn(self)
@@ -229,6 +258,7 @@ const (
 	le
 	gt
 	ge
+	throw
 )
 
 var opText = []string{
@@ -238,6 +268,7 @@ var opText = []string{
 	"<=",
 	">",
 	">=",
+	"panic",
 }
 
 func (self *Case) check(depth int, lhs, rhs interface{}, op int) bool {
@@ -247,6 +278,8 @@ func (self *Case) check(depth int, lhs, rhs interface{}, op int) bool {
 
 	switch op {
 	case eq:
+		fallthrough
+	case throw:
 		if !DeepEqual(lhs, rhs) {
 			self.reportFail(depth+1, lhs, rhs, self.what, op)
 			return false
@@ -267,6 +300,8 @@ func (self *Case) reportFail(depth int, lhs, rhs interface{}, msg string, op int
 
 	switch op {
 	case eq:
+		fallthrough
+	case throw:
 		color.Printf("... expected @g%s = %v@|\n", mustTypeName(lhs), lhs)
 		color.Printf("...   actual @r%s = %v@|\n", mustTypeName(rhs), rhs)
 	case ne:

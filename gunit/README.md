@@ -160,3 +160,31 @@ func foo() (int, int, string, error) {
     return 1, -1, "ok", nil
 }
 ```
+
+## Panic Test
+
+Expect panic will be happen:
+```go
+func (self *Case) ExpectPanic(lhs interface{})
+```
+
+Assert panic:
+```go
+func (self *Case) AssertPanic(lhs, fn func())
+```
+
+Example:
+```
+func (self *MySuite) TestExpectPanic(c *gunit.Case) {
+    defer c.ExpectPanic("panic!") // must be in `defer` statement
+
+    panic("panic!")
+}
+
+func (self *MySuite) TestScopedPanic(c *gunit.Case) {
+    c.AssertPanic("error!", func () {
+        c.T.Log("panic incoming!")
+        panic("error!")
+    })
+}
+```

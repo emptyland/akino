@@ -2,7 +2,7 @@
 
 @(Gunit Document)[go|design]
 
-gunit add rich assert and expect checker for `go test`.
+Gunit add rich `Assert` and `Expect` checker for `go test`.
 
 ## Install
 
@@ -17,7 +17,7 @@ package foo
 
 import(
     "testing"
-    
+
     "github.com/emptyland/akino/gunit"
 )
 

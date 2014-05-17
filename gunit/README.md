@@ -174,7 +174,7 @@ func (self *Case) AssertPanic(lhs, fn func())
 ```
 
 Example:
-```
+```go
 func (self *MySuite) TestExpectPanic(c *gunit.Case) {
     defer c.ExpectPanic("panic!") // must be in `defer` statement
 

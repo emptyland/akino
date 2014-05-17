@@ -11,6 +11,7 @@ import (
 	"testing"
 
 	"github.com/wsxiaoys/terminal/color"
+	dmp "github.com/sergi/go-diff/diffmatchpatch"
 )
 
 //
@@ -78,6 +79,7 @@ func RunTest(unit interface{}, t *testing.T) {
 	}
 
 	if specSuiteName != "" && specSuiteName != name {
+		t.SkipNow()
 		return // Skip no specity suite
 	}
 	suite := &Test{
@@ -302,13 +304,47 @@ func (self *Case) reportFail(depth int, lhs, rhs interface{}, msg string, op int
 	case eq:
 		fallthrough
 	case throw:
-		color.Printf("... expected @g%s = %v@|\n", mustTypeName(lhs), lhs)
-		color.Printf("...   actual @r%s = %v@|\n", mustTypeName(rhs), rhs)
+		self.reportFailWithDiff(lhs, rhs)
 	case ne:
 		color.Printf("... expected @g%s = %v@|\n", mustTypeName(lhs), lhs)
 		color.Printf("...   but is @requals@|\n")
 	}
 	self.numFail++
+}
+
+func (self *Case) reportFailWithDiff(lhs, rhs interface{}) {
+	if (lhs != nil && rhs != nil) {
+		if s1, ok := lhs.(string); ok {
+			s2 := rhs.(string)
+			self.printDiff(s1, s2)
+			return
+		}
+	}
+
+	color.Printf("... expected @g%s = %v@|\n", mustTypeName(lhs), lhs)
+	color.Printf("...   actual @r%s = %v@|\n", mustTypeName(rhs), rhs)
+}
+
+func (self *Case) printDiff(s1, s2 string) {
+	color.Printf("... expected ... @gstring =@|\n%v\n", s1)
+	color.Printf("...   actual ... @rstring =@|\n%v\n", s2)
+	color.Printf("...  diff is ...\n")
+
+	state := dmp.New()
+	diffs := state.DiffMain(s1, s2, false)
+	for _, diff := range diffs {
+		switch diff.Type {
+		case dmp.DiffEqual:
+			fmt.Print(diff.Text)
+
+		case dmp.DiffDelete:
+			color.Printf("@r[-%s]@|", diff.Text)
+
+		case dmp.DiffInsert:
+			color.Printf("@g[+%s]@|", diff.Text)
+		}
+	}
+	fmt.Println()
 }
 
 func mustTypeName(ob interface{}) string {

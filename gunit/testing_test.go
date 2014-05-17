@@ -1,9 +1,10 @@
 package gunit
 
 import (
-	//"fmt"
 	"bytes"
 	"testing"
+
+	dmp "github.com/sergi/go-diff/diffmatchpatch"
 )
 
 func TestTesting(t *testing.T) {
@@ -43,6 +44,14 @@ func (self *SanityTest) TestExpectFail(c *Case) {
 	c.ExpectNotNil(nil)
 }
 
+func (self *SanityTest) TestLongStringDiff(c *Case) {
+	s1 := `this is a
+long string.`
+	s2 := `that is the
+long string`
+	c.ExpectEquals(s1, s2)
+}
+
 func (self *SanityTest) TestBuffer(c *Case) {
 	s := `a
 b
@@ -75,4 +84,15 @@ func (self *SanityTest) TestSliceRef(c *Case) {
 	originSlice[1] = -1
 	c.ExpectEquals(-1, originSlice[1])
 	c.ExpectEquals(-1, refSlice[1])
+}
+
+func (self *SanityTest) TestDiffShow(c *Case) {
+	state := dmp.New()
+	diffs := state.DiffMain("aaabdef", "aaacdef1", false)
+
+	c.AssertEquals(dmp.Diff{dmp.DiffEqual, "aaa"}, diffs[0])
+	c.AssertEquals(dmp.Diff{dmp.DiffDelete, "b"}, diffs[1])
+	c.AssertEquals(dmp.Diff{dmp.DiffInsert, "c"}, diffs[2])
+	c.AssertEquals(dmp.Diff{dmp.DiffEqual, "def"}, diffs[3])
+	c.AssertEquals(dmp.Diff{dmp.DiffInsert, "1"}, diffs[4])
 }

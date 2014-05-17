@@ -4,6 +4,8 @@
 
 Gunit add rich `Assert` and `Expect` checker for `go test`.
 
+![Rich Output](https://raw.githubusercontent.com/emptyland/emptyland.github.io/master/images/gunit-running.png)
+
 ## Install
 
 ```bash

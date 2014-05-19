@@ -1,7 +1,7 @@
 package gunit
 
 import (
-	"fmt"
+	"github.com/wsxiaoys/terminal/color"
 )
 
 // Example:
@@ -96,7 +96,7 @@ func (self *Batch) ExpectEquals(lhs interface{}) *Batch {
 func (self *Batch) val() interface{} {
 	if self.index >= len(self.returnVals) {
 		self.c.location(1)
-		fmt.Printf("FAIL: too many check values, max: %v\n", len(self.returnVals))
+		color.Printf("@r---@| FAIL: too many check values, max: %v\n", len(self.returnVals))
 		self.c.numFail++
 		panic(self.c)
 	}

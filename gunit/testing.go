@@ -1,6 +1,7 @@
 package gunit
 
 import (
+	"bytes"
 	"flag"
 	"fmt"
 	"io"
@@ -9,9 +10,10 @@ import (
 	"runtime"
 	"strings"
 	"testing"
+	"time"
 
-	"github.com/wsxiaoys/terminal/color"
 	dmp "github.com/sergi/go-diff/diffmatchpatch"
+	"github.com/wsxiaoys/terminal/color"
 )
 
 //
@@ -51,6 +53,7 @@ type Test struct {
 }
 
 var testName = flag.String("gunit.test", "", "specify the name for test running.")
+var testV = flag.Bool("gunit.v", false, "enable verbose output.")
 
 var specSuiteName = ""
 var specCaseName = ""
@@ -163,7 +166,14 @@ func (self *Test) runCase(caseFn Method) bool {
 		self.setUp.Func.Call(args)
 	}
 
+	var jiffy time.Time
+	if *testV {
+		jiffy = time.Now()
+	}
 	caseFn.Func.Call(args)
+	if *testV {
+		caseOb.reportPass(jiffy)
+	}
 	return false
 }
 
@@ -296,9 +306,13 @@ func (self *Case) check(depth int, lhs, rhs interface{}, op int) bool {
 	return true
 }
 
+func (self *Case) reportPass(jiffy time.Time) {
+	color.Printf("@g---@| %s.%s\n@g---@| PASS %0.3fs\n", self.suiteName, self.name, time.Since(jiffy).Seconds())
+}
+
 func (self *Case) reportFail(depth int, lhs, rhs interface{}, msg string, op int) {
 	self.location(depth + 1)
-	fmt.Printf("FAIL (%s) %s\n", opText[op], msg)
+	color.Printf("@r---@| FAIL %s\n", msg)
 
 	switch op {
 	case eq:
@@ -306,14 +320,14 @@ func (self *Case) reportFail(depth int, lhs, rhs interface{}, msg string, op int
 	case throw:
 		self.reportFailWithDiff(lhs, rhs)
 	case ne:
-		color.Printf("... expected @g%s = %v@|\n", mustTypeName(lhs), lhs)
-		color.Printf("...   but is @requals@|\n")
+		color.Printf("@r...@| expected @g%s = %v@|\n", mustTypeName(lhs), lhs)
+		color.Printf("@r...@|   but is @requals@|\n")
 	}
 	self.numFail++
 }
 
 func (self *Case) reportFailWithDiff(lhs, rhs interface{}) {
-	if (lhs != nil && rhs != nil) {
+	if lhs != nil && rhs != nil {
 		if s1, ok := lhs.(string); ok {
 			s2 := rhs.(string)
 			self.printDiff(s1, s2)
@@ -321,14 +335,15 @@ func (self *Case) reportFailWithDiff(lhs, rhs interface{}) {
 		}
 	}
 
-	color.Printf("... expected @g%s = %v@|\n", mustTypeName(lhs), lhs)
-	color.Printf("...   actual @r%s = %v@|\n", mustTypeName(rhs), rhs)
+	color.Printf("@r...@| expected @g%s = %v@|\n", mustTypeName(lhs), lhs)
+	color.Printf("@r...@|   actual @r%s = %v@|\n", mustTypeName(rhs), rhs)
 }
 
 func (self *Case) printDiff(s1, s2 string) {
-	color.Printf("... expected ... @gstring =@|\n%v\n", s1)
-	color.Printf("...   actual ... @rstring =@|\n%v\n", s2)
-	color.Printf("...  diff is ...\n")
+	s1, s2 = formatize("    ", s1), formatize("    ", s2)
+	color.Printf("@r...@| expected @gstring =@|\n%v\n", s1)
+	color.Printf("@r...@|   actual @rstring =@|\n%v\n", s2)
+	color.Printf("@r...@|  diff is\n")
 
 	state := dmp.New()
 	diffs := state.DiffMain(s1, s2, false)
@@ -347,6 +362,20 @@ func (self *Case) printDiff(s1, s2 string) {
 	fmt.Println()
 }
 
+func formatize(indent, s string) string {
+	lines := strings.Split(s, "\n")
+
+	var buf bytes.Buffer
+	for i, line := range lines {
+		if i > 0 {
+			buf.WriteRune('\n')
+		}
+		buf.WriteString(indent)
+		buf.WriteString(line)
+	}
+	return buf.String()
+}
+
 func mustTypeName(ob interface{}) string {
 	if ob == nil {
 		return "nil"
@@ -363,7 +392,7 @@ func (self *Case) location(depth int) {
 		}
 
 		file = self.fileName(file)
-		color.Printf("@y[%s.%s]@| %s:%d:\n%s\n", self.suiteName, self.name, file, line, lines[line-1])
+		color.Printf("@r---@| %s.%s %s:%d:\n%s\n", self.suiteName, self.name, file, line, lines[line-1])
 	}
 }
 
@@ -377,7 +406,7 @@ func (self *Case) fileName(absPath string) string {
 
 func (self *Case) Fail() {
 	self.location(2)
-	fmt.Printf("FAIL %s\n", self.what)
+	color.Printf("@r---@| FAIL %s\n", self.what)
 	self.what = ""
 	self.numFail++
 	panic(self)
